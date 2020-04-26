@@ -8,9 +8,21 @@ function App() {
 
   useEffect(() => {
     async function fetchPeople() {
-      let res = await fetch('https://swapi.co/api/people/?format=json')
+      let res = await fetch('https://swapi.co/api/people/?format=json');
+      let data = await res.json();
+      setPeople(data.results)
     }
+
+    async function fetchPlanets() {
+      let res = await fetch('https://swapi.co/api/planets/?format=json')
+      let data = await res.json();
+      setPlanets(data.results)
+    }
+
+    fetchPeople();
+    fetchPlanets();
   }, [])
+  console.log('data', people);
   return (
     <div className="App">
       hello
